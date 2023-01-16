@@ -1,0 +1,90 @@
+version: '3.8'
+
+services:
+  strapi_a:
+    container_name: strapi_a
+    image: naskio/strapi:latest
+    restart: unless-stopped
+    env_file: .env
+    labels:
+      com.example.description: "Instance A"
+    volumes:
+      - ./app_a:/srv/app:rw
+    ports:
+      - ${PORT_A}:${PORT_A}
+    environment:
+      - VIRTUAL_HOST=poligen.expertoverflow.com
+      - VIRTUAL_PORT=1337
+      - LETSENCRYPT_HOST=poligen.expertoverflow.com
+      - LETSENCRYPT_EMAIL=info@expertoverflow.com
+      - DATABASE_CLIENT=${DATABASE_CLIENT}
+      - DATABASE_NAME=${DATABASE_NAME_A}
+      - DATABASE_HOST=db_a
+      - DATABASE_PORT=3306
+      - DATABASE_USERNAME=${DATABASE_USERNAME_A}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD_A}
+      - JWT_SECRET=${JWT_SECRET_A}
+      - ADMIN_JWT_SECRET=${ADMIN_JWT_SECRET_A}
+      - NODE_ENV=${NODE_ENV}
+  strapi_b:
+    container_name: strapi_b
+    image: naskio/strapi:latest
+    restart: unless-stopped
+    env_file: .env
+    labels:
+      com.example.description: "Instance B"
+    volumes:
+      - ./app_b:/srv/app:rw
+    ports:
+      - ${PORT_B}:${PORT_B}
+    environment:
+      - VIRTUAL_HOST=poligen.expertoverflow.com
+      - VIRTUAL_PORT=1337
+      - LETSENCRYPT_HOST=poligen.expertoverflow.com
+      - LETSENCRYPT_EMAIL=info@expertoverflow.com
+      - DATABASE_CLIENT=${DATABASE_CLIENT}
+      - DATABASE_NAME=${DATABASE_NAME_B}
+      - DATABASE_HOST=db_b
+      - DATABASE_PORT=3306
+      - DATABASE_USERNAME=${DATABASE_USERNAME_B}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD_B}
+      - JWT_SECRET=${JWT_SECRET_B}
+      - ADMIN_JWT_SECRET=${ADMIN_JWT_SECRET_B}
+      - NODE_ENV=${NODE_ENV}
+  db_a:
+    image: mysql:latest
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    cap_add:
+      - SYS_NICE
+    security_opt:
+      - seccomp:unconfined
+    expose:
+      - 3306
+    volumes:
+      - ./data_a:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - MYSQL_ROOT_PASSWORD=wJrtWT45
+      - MYSQL_PASSWORD=${DATABASE_PASSWORD_A}
+      - MYSQL_DATABASE=${DATABASE_USERNAME_A}
+      - MYSQL_USER=${DATABASE_USERNAME_A}
+    restart: unless-stopped
+  db_b:
+    image: mysql:latest
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    cap_add:
+      - SYS_NICE
+    security_opt:
+      - seccomp:unconfined
+    expose:
+      - 3306
+    volumes:
+      - ./data_b:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - MYSQL_ROOT_PASSWORD=wJrtWT45
+      - MYSQL_PASSWORD=${DATABASE_PASSWORD_B}
+      - MYSQL_DATABASE=${DATABASE_USERNAME_B}
+      - MYSQL_USER=${DATABASE_USERNAME_B}
+    restart: unless-stopped
+
