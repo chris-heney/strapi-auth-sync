@@ -13,14 +13,10 @@ services:
     ports:
       - ${PORT_A}:${PORT_A}
     environment:
-      - VIRTUAL_HOST=poligen.expertoverflow.com
-      - VIRTUAL_PORT=1337
-      - LETSENCRYPT_HOST=poligen.expertoverflow.com
-      - LETSENCRYPT_EMAIL=info@expertoverflow.com
       - DATABASE_CLIENT=${DATABASE_CLIENT}
       - DATABASE_NAME=${DATABASE_NAME_A}
-      - DATABASE_HOST=db_a
-      - DATABASE_PORT=3306
+      - DATABASE_HOST=${DATABASE_HOST_A}
+      - DATABASE_PORT=${DATABASE_PORT}
       - DATABASE_USERNAME=${DATABASE_USERNAME_A}
       - DATABASE_PASSWORD=${DATABASE_PASSWORD_A}
       - JWT_SECRET=${JWT_SECRET_A}
@@ -38,14 +34,10 @@ services:
     ports:
       - ${PORT_B}:${PORT_B}
     environment:
-      - VIRTUAL_HOST=poligen.expertoverflow.com
-      - VIRTUAL_PORT=1337
-      - LETSENCRYPT_HOST=poligen.expertoverflow.com
-      - LETSENCRYPT_EMAIL=info@expertoverflow.com
       - DATABASE_CLIENT=${DATABASE_CLIENT}
       - DATABASE_NAME=${DATABASE_NAME_B}
-      - DATABASE_HOST=db_b
-      - DATABASE_PORT=3306
+      - DATABASE_HOST=${DATABASE_HOST_B}
+      - DATABASE_PORT=${DATABASE_PORT}
       - DATABASE_USERNAME=${DATABASE_USERNAME_B}
       - DATABASE_PASSWORD=${DATABASE_PASSWORD_B}
       - JWT_SECRET=${JWT_SECRET_B}
