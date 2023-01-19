@@ -321,7 +321,7 @@ module.exports = ({ strapi }) => ({
           data: data,
         };
         const updateUser = await axios(config);
-        return ctx.send({ msg: "Password has been reset successfully" });
+        // return ctx.send({ msg: "Password has been reset successfully" });
       } catch (error) {
         continue;
       }
