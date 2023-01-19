@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "providers",
+  "info": {
+    "singularName": "provider",
+    "pluralName": "providers",
+    "displayName": "Provider"
+  },
+  "options": {
+    "draftAndPublish": true,
+    "comment": ""
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "sync_login": {
+      "type": "boolean"
+    },
+    "sync_register": {
+      "type": "boolean"
+    },
+    "sync_password_reset": {
+      "type": "boolean"
+    },
+    "sync_password_update": {
+      "type": "boolean"
+    },
+    "http_method": {
+      "type": "enumeration",
+      "enum": [
+        "GET",
+        "POST",
+        "PUT"
+      ]
+    },
+    "auth_method": {
+      "type": "enumeration",
+      "enum": [
+        "token",
+        "OAuth",
+        "SAML"
+      ]
+    },
+    "endpoint": {
+      "type": "string"
+    },
+    "token": {
+      "type": "string"
+    }
+  }
+}

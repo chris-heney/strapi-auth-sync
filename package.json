@@ -1,0 +1,35 @@
+{
+  "name": "custom-plugin",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
+    "@strapi/plugin-i18n": "4.5.6",
+    "@strapi/plugin-users-permissions": "4.5.6",
+    "@strapi/provider-email-sendgrid": "^4.5.6",
+    "@strapi/strapi": "4.5.6",
+    "axios": "^1.2.3",
+    "bcrypt": "^5.1.0",
+    "better-sqlite3": "7.4.6",
+    "dotenv": "^16.0.3",
+    "jsonwebtoken": "^9.0.0"
+  },
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "strapi": {
+    "uuid": "bc618452-31c0-42ef-8d74-bf68ad4bbd6d"
+  },
+  "engines": {
+    "node": ">=14.19.1 <=18.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}
